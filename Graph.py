@@ -47,37 +47,18 @@ class UndirectedGraphMatrix:
 # g.showGraph()
 
 
-class DirectedGraphMatrix:
-	def __init__(self,n):
-		self.vertices = n
-		self.graph_rep =[[0]*n for i in range(n)]
+class DirectedGraphMatrix(UndirectedGraphMatrix):
 
-	def addVertices(self):
-		for i in range(self.vertices):
-			 existing_row= self.graph_rep[i]
-			 existing_row.append(0)
-
-		self.vertices = self.vertices+1
-		newrow = [0]*self.vertices
-		newgraph = self.graph_rep
-		newgraph.append(newrow)
-
-	def addEdge(self,node1,node2,weight):
+	def addEdge(self,node1,node2,weight=1):
 		self.graph_rep[node1-1][node2-1] = weight
 		
 
-	def showGraph(self):
-		n = self.vertices
-		for i in range(n):
-			for j in range(n):
-				print(self.graph_rep[i][j] , end='\t')
-			print()
+	
 
 
 
 # g = DirectedGraphMatrix(4)
 # g.addVertices()
-# # g.showGraph()
 # g.addEdge(1,2)
 # g.addEdge(5,3)
 # g.showGraph()
@@ -87,11 +68,11 @@ class UndirectedGraphList:
 	
 	def __init__(self):
 		self.graph_rep = {}
-		# print(self.graph_rep)
+		
 
 	def addVertices(self,value):
 		self.graph_rep[value] = []
-		# print(self.graph_rep)
+		
 
 	def addEdge(self,node1,node2):
 		links = self.graph_rep[node1]
@@ -112,32 +93,21 @@ class UndirectedGraphList:
 # g.addEdge('B','E')
 # g.showGraph()
 
-class DirectedGraphList:
+class DirectedGraphList(UndirectedGraphList):
 	
-	def __init__(self):
-		self.graph_rep = {}
-		# print(self.graph_rep)
-
-	def addVertices(self,value):
-		self.graph_rep[value] = []
-		# print(self.graph_rep)
-
+	
 	def addEdge(self,node1,node2):
 		links = self.graph_rep[node1]
 		links.append(node2)
-		
-
-	def showGraph(self):
-		print(self.graph_rep)
 
 
-# g = DirectedGraphList()
-# g.addVertices('A')
-# g.addVertices('B')
-# g.addVertices('E')
-# g.addEdge('A','E')
-# g.addEdge('A','B')
-# g.addEdge('B','E')
-# g.showGraph()
+g = DirectedGraphList()
+g.addVertices('A')
+g.addVertices('B')
+g.addVertices('E')
+g.addEdge('A','E')
+g.addEdge('A','B')
+g.addEdge('B','E')
+g.showGraph()
 
 
