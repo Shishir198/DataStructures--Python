@@ -47,7 +47,76 @@ class UndirectedGraphMatrix:
 # g.showGraph()
 
 
+class WeightedUndirectedGraphMatrix:
+	def __init__(self,n):
+		self.vertices = n
+		self.graph_rep =[[0]*n for i in range(n)]
 
+	def addVertices(self):
+		for i in range(self.vertices):
+			 existing_row= self.graph_rep[i]
+			 existing_row.append(0)
+
+		self.vertices = self.vertices+1
+		newrow = [0]*self.vertices
+		newgraph = self.graph_rep
+		newgraph.append(newrow)
+
+	def addEdge(self,node1,node2,weight):
+		self.graph_rep[node1-1][node2-1] = weight
+		self.graph_rep[node2-1][node1-1] = weight
+
+	def showGraph(self):
+		n = self.vertices
+		for i in range(n):
+			for j in range(n):
+				print(self.graph_rep[i][j] , end='\t')
+			print()
+
+
+# g = WeightedUndirectedGraphMatrix(4)
+# g.addVertices()
+# g.addEdge(1,2,5)
+# g.addEdge(5,3,5)
+# g.addEdge(2,3,3)
+# g.addEdge(4,3,9)
+# g.addEdge(5,2,7)
+# g.showGraph()
+
+class WeightedDirectedGraphMatrix:
+	def __init__(self,n):
+		self.vertices = n
+		self.graph_rep =[[0]*n for i in range(n)]
+
+	def addVertices(self):
+		for i in range(self.vertices):
+			 existing_row= self.graph_rep[i]
+			 existing_row.append(0)
+
+		self.vertices = self.vertices+1
+		newrow = [0]*self.vertices
+		newgraph = self.graph_rep
+		newgraph.append(newrow)
+
+	def addEdge(self,node1,node2,weight):
+		self.graph_rep[node1-1][node2-1] = weight
+		# self.graph_rep[node2-1][node1-1] = weight
+
+	def showGraph(self):
+		n = self.vertices
+		for i in range(n):
+			for j in range(n):
+				print(self.graph_rep[i][j] , end='\t')
+			print()
+
+g = WeightedDirectedGraphMatrix(4)
+g.addVertices()
+g.addEdge(1,2,5)
+g.addEdge(5,3,5)
+g.addEdge(2,3,3)
+g.addEdge(4,3,9)
+g.addEdge(5,2,7)
+g.showGraph()
 
 class DirectedGraphMatrix:
 	def __init__(self,n):
@@ -77,12 +146,12 @@ class DirectedGraphMatrix:
 
 
 
-g = DirectedGraphMatrix(4)
-g.addVertices()
+# g = DirectedGraphMatrix(4)
+# g.addVertices()
+# # g.showGraph()
+# g.addEdge(1,2)
+# g.addEdge(5,3)
 # g.showGraph()
-g.addEdge(1,2)
-g.addEdge(5,3)
-g.showGraph()
 
 # Using Adjacency list
 class UndirectedGraphList:
@@ -141,6 +210,5 @@ class DirectedGraphList:
 # g.addEdge('A','B')
 # g.addEdge('B','E')
 # g.showGraph()
-
 
 
