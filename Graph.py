@@ -11,6 +11,7 @@
 # if there are very less edges  - adjancy list
 
 # Using Adjacency Matrix
+from collections import deque
 class UndirectedGraphMatrix:
 	def __init__(self,n):
 		self.vertices = n
@@ -84,14 +85,58 @@ class UndirectedGraphList:
 	def showGraph(self):
 		print(self.graph_rep)
 
-# g = UndirectedGraphList()
-# g.addVertices('A')
-# g.addVertices('B')
-# g.addVertices('E')
-# g.addEdge('A','E')
-# g.addEdge('A','B')
-# g.addEdge('B','E')
-# g.showGraph()
+
+	def dfs(self,start,visited={},path=[]):
+		path.append(start)
+		visited[start] = True
+		for n in self.graph_rep[start]:
+			try:
+				if visited[n]:
+					pass 
+			except:
+				self.dfs(n,visited,path)
+		return path
+
+	def bfs(self,start,visited={},path=[]):
+		path.append(start)
+		queue = deque()
+		queue.append(start)
+		visited[start] = True
+		while len(queue)!=0:
+			focused_node = queue.popleft()
+			for n in self.graph_rep[focused_node]:
+				try:
+					if visited[n] == True:
+						pass
+				except:
+					path.append(n)
+					queue.append(n)
+					visited[n] = True
+		return path
+		
+
+
+
+g = UndirectedGraphList()
+g.addVertices('A')
+g.addVertices('B')
+g.addVertices('C')
+g.addVertices('D')
+g.addVertices('E')
+g.addVertices('F')
+g.addVertices('G')
+g.addEdge('A','B')
+g.addEdge('A','C')
+g.addEdge('A','F')
+g.addEdge('C','E')
+g.addEdge('C','F')
+g.addEdge('C','D')
+g.addEdge('D','E')
+g.addEdge('D','G')
+g.addEdge('G','F')
+g.showGraph()
+print(g.dfs('A'))
+print(g.bfs('A'))
 
 class DirectedGraphList(UndirectedGraphList):
 	
@@ -101,13 +146,13 @@ class DirectedGraphList(UndirectedGraphList):
 		links.append(node2)
 
 
-g = DirectedGraphList()
-g.addVertices('A')
-g.addVertices('B')
-g.addVertices('E')
-g.addEdge('A','E')
-g.addEdge('A','B')
-g.addEdge('B','E')
-g.showGraph()
+# g = DirectedGraphList()
+# g.addVertices('A')
+# g.addVertices('B')
+# g.addVertices('E')
+# g.addEdge('A','E')
+# g.addEdge('A','B')
+# g.addEdge('B','E')
+# g.showGraph()
 
 
