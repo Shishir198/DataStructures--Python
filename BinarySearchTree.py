@@ -104,6 +104,22 @@ class BinarySearchTree:
 
 		return self.PostOrder(self.root, [])
 
+	
+	def height(self,root):
+	    add = 0
+	    if root.leftNode:
+	        add = 1 + self.height(root.leftNode)
+	    if root.rightNode:
+	        add = 1 + self.height(root.rightNode)
+	    
+	    return add
+	def getheight(self):
+		root = self.root
+		return self.height(root)
+
+		
+            
+        
 
 class Node:
 	def __init__(self,value):
@@ -120,7 +136,8 @@ tree.insert(Node(73))
 tree.insert(Node(108))
 tree.insert(Node(10))
 tree.insert(Node(1))
+print(tree.getheight())
 # tree.BreadthFirstSearch()
-print(tree.traverseInOrder())
-print(tree.traversePreOrder())
-print(tree.traversePostOrder())
+# print(tree.traverseInOrder())
+# print(tree.traversePreOrder())
+# print(tree.traversePostOrder())
