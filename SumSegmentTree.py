@@ -1,4 +1,5 @@
-givenArr = [1,2,3,4,5,6,7,8,9]
+from math import ceil,log2
+givenArr = [1,3,5,7,9,11]
 
 
 def BuildSegmentTree(givenArr,DesiredArray,start=0,end=len(givenArr)-1,desiredIndex=0):  #Time Complexity = O(N)
@@ -16,9 +17,22 @@ def BuildSegmentTree(givenArr,DesiredArray,start=0,end=len(givenArr)-1,desiredIn
 	DesiredArray[desiredIndex] = DesiredArray[2*desiredIndex +1] + DesiredArray[2*desiredIndex+2]
 	# print("DesiredArray=",DesiredArray)
 	
+def updateValueAt(array,node,amount):
+	try:
+		index = array.index(node)
+		while index>=0:
+			array[index] = array[index]+amount
+			index = (index-1)//2
+	except:
+		print("Value",node,"Doesnt Exist in the array")
 
-DesiredArray=[0]*(2*len(givenArr)-1)
+
+x = (int)(ceil(log2(len(givenArr))));   
+max_size = 2 * (int)(2**x) - 1
+
+DesiredArray = [None]*max_size
 # print("Building tree from",0 , len(givenArr)-1)
 BuildSegmentTree(givenArr,DesiredArray)
 print(DesiredArray)
-
+updateValueAt(DesiredArray,1,2)
+print(DesiredArray)
